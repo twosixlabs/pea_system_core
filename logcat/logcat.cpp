@@ -14,6 +14,19 @@
  * limitations under the License.
  */
 
+/*
+ * This work was modified by Two Six Labs, LLC and is sponsored by a subcontract agreement with
+ * Raytheon BBN Technologies Corp. under Prime Contract No. FA8750-16-C-0006 with the Air Force
+ * Research Laboratory (AFRL).
+ *
+ * The Government has unlimited rights to use, modify, reproduce, release, perform, display, or disclose
+ * computer software or computer software documentation marked with this legend. Any reproduction of
+ * technical data, computer software, or portions thereof marked with this legend must also reproduce
+ * this marking.
+ *
+ * Copyright (C) 2020 Two Six Labs, LLC.  All rights reserved.
+ */
+
 #include <arpa/inet.h>
 #include <assert.h>
 #include <ctype.h>
@@ -478,9 +491,9 @@ static void show_help(android_logcat_context_internal* context) {
                     // Leave security (Device Owner only installations) and
                     // kernel (userdebug and eng) buffers undocumented.
                     "  -b <buffer>, --buffer=<buffer>         Request alternate ring buffer, 'main',\n"
-                    "                  'system', 'radio', 'events', 'crash', 'default' or 'all'.\n"
+                    "                  'system', 'radio', 'events', 'crash', 'permission', 'default' or 'all'.\n"
                     "                  Multiple -b parameters or comma separated list of buffers are\n"
-                    "                  allowed. Buffers interleaved. Default -b main,system,crash.\n"
+                    "                  allowed. Buffers interleaved. Default -b main,system,crash,permission.\n"
                     "  -B, --binary    Output the log in binary.\n"
                     "  -S, --statistics                       Output statistics.\n"
                     "  -p, --prune     Print prune white and ~black list. Service is specified as\n"
@@ -1343,6 +1356,10 @@ static int __logcat(android_logcat_context_internal* context) {
         }
         if (android_name_to_log_id("crash") == LOG_ID_CRASH) {
             dev = dev->next = new log_device_t("crash", false);
+            context->devCount++;
+        }
+        if (android_name_to_log_id("permission") == LOG_ID_PERMISSION) {
+            dev = dev->next = new log_device_t("permission", false);
             context->devCount++;
         }
     }

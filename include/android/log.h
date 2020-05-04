@@ -184,6 +184,7 @@ typedef enum log_id {
   LOG_ID_STATS = 5,
   LOG_ID_SECURITY = 6,
   LOG_ID_KERNEL = 7, /* place last, third-parties can not use it */
+  LOG_ID_PERMISSION = 8, /* NOTE: placing this last to avoid collisions */
 
   LOG_ID_MAX
 } log_id_t;

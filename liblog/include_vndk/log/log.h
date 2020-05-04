@@ -10,6 +10,7 @@
 #include <log/log_read.h>
 #include <log/log_safetynet.h>
 #include <log/log_system.h>
+#include <log/log_permission.h>
 #include <log/log_time.h>
 
 /*

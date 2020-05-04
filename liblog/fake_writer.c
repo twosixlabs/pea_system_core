@@ -14,6 +14,19 @@
  * limitations under the License.
  */
 
+/*
+ * This work was modified by Two Six Labs, LLC and is sponsored by a subcontract agreement with
+ * Raytheon BBN Technologies Corp. under Prime Contract No. FA8750-16-C-0006 with the Air Force
+ * Research Laboratory (AFRL).
+ *
+ * The Government has unlimited rights to use, modify, reproduce, release, perform, display, or disclose
+ * computer software or computer software documentation marked with this legend. Any reproduction of
+ * technical data, computer software, or portions thereof marked with this legend must also reproduce
+ * this marking.
+ *
+ * Copyright (C) 2020 Two Six Labs, LLC.  All rights reserved.
+ */
+
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -30,7 +43,7 @@ static void fakeClose();
 static int fakeWrite(log_id_t log_id, struct timespec* ts, struct iovec* vec,
                      size_t nr);
 
-static int logFds[(int)LOG_ID_MAX] = { -1, -1, -1, -1, -1, -1 };
+static int logFds[(int)LOG_ID_MAX] = { -1, -1, -1, -1, -1, -1, -1, -1 };
 
 LIBLOG_HIDDEN struct android_log_transport_write fakeLoggerWrite = {
   .node = { &fakeLoggerWrite.node, &fakeLoggerWrite.node },
